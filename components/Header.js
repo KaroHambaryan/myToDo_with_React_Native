@@ -5,6 +5,7 @@ const Header = () => {
 	const currentDate = Moment().format('MMMM DD, YYYY');
 	return (
 		<View style={styles.header}>
+			<View style={styles}></View>
 			<Text style={styles.header_data}>{currentDate}</Text>
 			<Text style={styles.header_title}>My Todo List</Text>
 			<Image tintColor="#FFFFFF" source={require('../assets/elipse.png')} style={styles.header_elips} />

@@ -1,34 +1,53 @@
 
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView, ScrollView, StatusBar} from "react-native";
 import Task from "./Task";
 
 const Main = () => {
 	return (
-		<View style={styles.main}>
-			<Task />
-			<View style={styles.completed}>
+		<SafeAreaView style={styles.main}>
+			<ScrollView style={styles.scrollView}>
+				<View style={styles.completed}>
+					<Task />
+					<Task />
+					<Task />
+					<Task />
+				</View>
 				<Text style={styles.completed_text}>Completed</Text>
-			</View>
-		</View>
+				<View style={styles.completed}>
+					<Task />
+					<Task />
+					<Task />
+					<Task />
+					<Task />
+				</View>
+			</ScrollView>
+		</SafeAreaView>
 	);
 };
 
 const styles = StyleSheet.create({
 	main: {
-		position: 'absolute',
-		top: 160,
-		borderRadius: 15,
-		overflow: "hidden",
-		backgroundColor: 'red',
-		width: '100%',
-		paddingHorizontal:16,
+		flex: 1,
+		paddingTop: StatusBar.currentHeight,
+		// position: 'absolute',
+		// top: 160,
+		// borderRadius: 15,
+		// overflow: "hidden",
+		// backgroundColor: 'red',
+		// width: '100%',
+		// paddingHorizontal:16,
+	},
+	scrollView: {
+		backgroundColor: 'pink',
+    marginHorizontal: 20,
 	},
 	completed: {
-		marginVertical: 24,
+		
 	},
 	completed_text: {
 		fontSize: 16,
-		fontWeight:600,
+		fontWeight: 600,
+		marginVertical: 24,
 	},
 });
 

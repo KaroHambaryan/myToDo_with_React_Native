@@ -1,7 +1,6 @@
 // import React, {useState} from "react";
 import { useState } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
-import { CheckBox } from 'react-native-elements';
+import { View, Text, StyleSheet, Image,TouchableOpacity} from 'react-native';
 import Moment from 'moment';
 
 const Task = () => {
@@ -11,20 +10,22 @@ const Task = () => {
 	const handleCheckBoxToggle = () => {
 		setIsChecked(!isChecked);
 	};
+
 	return (
 		<View style={styles.task_container}>
-			<View style={styles.icon_wrapper}>
-				<Image source={require('../assets/Vector.png')}></Image>
-			</View>
-			<View style={styles.task_style}>
-				<Text>Main</Text>
-				<Text>{currentTime}</Text>
+			<View style={styles.wrapper}>
+				<View style={styles.icon_wrapper}>
+					<Image source={require('../assets/vector.png')} />
+				</View>
+				<View style={styles.task_style}>
+					<Text>Main</Text>
+					<Text>{currentTime}</Text>
+				</View>
 			</View>
 			<View>
-				<CheckBox
-					checked={isChecked}
-					onPress={() => setIsChecked(!isChecked)}
-				/>
+				<TouchableOpacity onPress={handleCheckBoxToggle}>
+					<Image style={styles.check_style} source={isChecked ? require('../assets/Checked_True.png') : require('../assets/Checked_False.png')} />
+				</TouchableOpacity>
 			</View>
 		</View>
 	);
@@ -40,17 +41,23 @@ const styles = StyleSheet.create({
 		backgroundColor: '#FEF5D3',
 		marginLeft: 16,
 	},
+	wrapper: {
+		flexDirection:'row',
+	},
 	task_container: {
 		width: '100%',
 		height: 80,
 		backgroundColor: '#FFFFFF',
 
 		flexDirection: 'row',
-		justifyContent: "flex-start",
+		justifyContent: "space-between",
 		alignItems: "center",
 	},
 	task_style: {
 		marginLeft: 12,
+	},
+	check_style: {
+		marginHorizontal:16,
 	},
 });
 
