@@ -1,5 +1,7 @@
 
-import DatePicker from "react-native-datepicker";
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { useState } from 'react';
+
 import {
 	Text,
 	View,
@@ -7,17 +9,12 @@ import {
 	Image,
 	TouchableOpacity,
 	TextInput,
+	Button,
 } from "react-native";
-import { useState } from 'react';
-
-
+import DatePickerInput from '../components/DataPikerInput';
 
 export const AddNewTask = ({ navigation }) => {
-	const [date, setDate] = useState('');
 
-  const handleDateChange = (selectedDate) => {
-    setDate(selectedDate);
-  };
 	return (
 		<View >
 			<View style={styles.task_title}>
@@ -46,18 +43,7 @@ export const AddNewTask = ({ navigation }) => {
 			<View style={styles.date_time}>
 				<View style={styles.date}>
 					<Text style={styles.label_style}>Date</Text>
-					<DatePicker
-						style={{ width: 200 }}
-						date={date}
-						mode="date"
-						placeholder="Выберите дату"
-						format="DD.MM.YYYY"
-						minDate="01.01.2000"
-						maxDate="31.12.2023"
-						confirmBtnText="Подтвердить"
-						cancelBtnText="Отмена"
-						onDateChange={handleDateChange}
-					/>
+					<DatePickerInput/>
 				</View>
 				<View style={styles.time}>
 					<Text style={styles.label_style}>Time</Text>
