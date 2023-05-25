@@ -21,25 +21,26 @@ const DatePickerInput = () => {
 		hideDatePicker();
 	};
 
-  return (
-    <View>
-      <TouchableOpacity style={styles.size} onPress={showDatePicker}>
+	return (
+		<>
+			<TouchableOpacity style={styles.size} onPress={showDatePicker}>
 				<TextInput
-          value={selectedDate}
-          placeholder="Select Date"
+					value={selectedDate}
+					placeholder="Select Date"
 					editable={false}
-					style={{color: 'black'}}
+					style={{ color: 'black' }}
 				/>
 				<Image source={require('../assets/icon_calendar.png')} style={styles.icon} />
-      </TouchableOpacity>
-      <DateTimePickerModal
-        isVisible={isDatePickerVisible}
-        mode="date"
-        onConfirm={handleConfirm}
-        onCancel={hideDatePicker}
-      />
-    </View>
-  );
+			</TouchableOpacity>
+			<DateTimePickerModal
+				isVisible={isDatePickerVisible}
+				mode="date"
+				onConfirm={handleConfirm}
+				onCancel={hideDatePicker}
+				display='spinner'
+			/>
+		</>
+	);
 };
 
 const styles = StyleSheet.create({
@@ -54,7 +55,6 @@ const styles = StyleSheet.create({
     width: 175,
     height: 55,
     padding: 10,
-    margin: 10,
 	},
 	icon:{
 			width: 20,
