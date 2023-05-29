@@ -1,22 +1,30 @@
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, Text, StyleSheet,Image } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
-const DatePickerInput = () => {
+import { TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectDate } from './dateInputSlice';
+import { changeDate } from './dateInputSlice';
+
+const DateInput = () => {
+	const dispatch = useDispatch();
+
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [selectedDate, setSelectedDate] = useState('');
 
-  const showDatePicker = () => {
-    setDatePickerVisibility(true);
+	const showDatePicker = () => {
+		setDatePickerVisibility(true);
+		
   };
 
-  const hideDatePicker = () => {
+	const hideDatePicker = () => {
     setDatePickerVisibility(false);
   };
 
 	const handleConfirm = (date) => {
 		const selectedDate = new Date(date);
 		const formattedDate = selectedDate.toLocaleDateString();
+		dispatch(changeDate(formattedDate));
 		setSelectedDate(formattedDate);
 		hideDatePicker();
 	};
@@ -30,7 +38,7 @@ const DatePickerInput = () => {
 					editable={false}
 					style={{ color: 'black' }}
 				/>
-				<Image source={require('../assets/icon_calendar.png')} style={styles.icon} />
+				<Image source={require('../../assets/icon_calendar.png')} style={styles.icon} />
 			</TouchableOpacity>
 			<DateTimePickerModal
 				isVisible={isDatePickerVisible}
@@ -63,4 +71,4 @@ const styles = StyleSheet.create({
 		},
 })
 
-export default DatePickerInput;
+export default DateInput;
