@@ -7,8 +7,8 @@ const dateInputSlice = createSlice({
   initialState,
   reducers: {
 		changeDate: (state, action) => {
-			console.log(action.payload);
-			return action.payload
+			state = action.payload;
+			return state;
 		},
   },
 });

@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeTextArea, selectTextArea } from './textAreaSlice';
+
 
 const TextAreaInput = () => {
-  const [text, setText] = useState('');
-
-	const handleChangeText = (value) => {
-		setText(value);
-		console.log(text);
-	}
+	const dispatch = useDispatch();
+	const text = useSelector(selectTextArea);
   return (
     <>
       <TextInput
         value={text}
-        onChangeText={handleChangeText}
+        onChangeText={(e)=>dispatch(changeTextArea(e))}
         placeholder="Notes"
         multiline={true}
 				style={styles.ReactText}

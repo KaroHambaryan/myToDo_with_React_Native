@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = "";
+const initialState = "list";
 
 const categoriesSlice = createSlice({
   name: 'category',
   initialState,
   reducers: {
 		changeCategories: (state, action) => {
-			console.log(action.payload);
-			return action.payload
+			state = action.payload;
+			return state;
 		},
   },
 });

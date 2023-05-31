@@ -13,12 +13,11 @@ import {
 export const Categories = () => {
 	const dispatch = useDispatch();
 
-
 	return 		<View style={styles.category_container}>
 	<View style={styles.category_wrapper}>
 		<Text style={[styles.label_style, styles.category_title]}>Category</Text>
 		
-		<TouchableOpacity onPress={()=>dispatch(changeCategories("work"))} style={styles.category}>
+		<TouchableOpacity onPress={()=>dispatch(changeCategories("list"))} style={styles.category}>
 			<Image source={require('../../assets/list.png')} />
 		</TouchableOpacity>
 

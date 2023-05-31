@@ -1,24 +1,26 @@
+import { View, Text, StyleSheet, SafeAreaView, ScrollView, StatusBar } from "react-native";
+import Task from "../Task/Task";
+import { useSelector } from "react-redux";
+import { selectUncompletedTasks, selectCompletedTasks } from "../uncompletedTasks/uncompletedTasksSlice";
 
-import { View, Text, StyleSheet, SafeAreaView, ScrollView, StatusBar} from "react-native";
-import Task from "./Task";
+
 
 const Main = () => {
+	const unCompletedTasks = useSelector(selectUncompletedTasks);
+	const completedTasks = useSelector(selectCompletedTasks);
 	return (
 		<SafeAreaView style={styles.main}>
 			<ScrollView style={styles.scrollView}>
 				<View style={styles.completed}>
-					<Task />
-					<Task />
-					<Task />
-					<Task />
+					{unCompletedTasks.map((elem, i) => {
+						return <Task elem={elem} key={`${elem.id}`} />
+					})}
 				</View>
 				<Text style={styles.completed_text}>Completed</Text>
 				<View style={styles.completed}>
-					<Task />
-					<Task />
-					<Task />
-					<Task />
-					<Task />
+					{completedTasks.map((elem, i) => {
+						return <Task elem={elem} key={`${i}`} />
+					})}
 				</View>
 			</ScrollView>
 		</SafeAreaView>

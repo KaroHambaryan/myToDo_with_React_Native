@@ -11,9 +11,9 @@ export const Navigation = () => {
 	return (
 		<NavigationContainer>
 		<Stack.Navigator initialRouteName="My_Todo_List">
-				{/* <Stack.Screen name="My_Todo_List" component={MyToDoList} options={{
+				<Stack.Screen name="My_Todo_List" component={MyToDoList} options={{
 					headerTitleAlign: 'center',
-				}} /> */}
+				}} />
 			<Stack.Screen name="Add_New_Task" component={AddNewTask} />
 		</Stack.Navigator>
 	</NavigationContainer>

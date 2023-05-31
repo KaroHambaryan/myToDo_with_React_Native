@@ -1,11 +1,10 @@
-
 import Header from '../components/Header';
-import Main from "../components/Main";
+import Main from "../features/Main/Main";
+
 
 import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 export const MyToDoList = ({ navigation }) => {
-
 	return (
 		<View style={styles.container}>
 			<Header />

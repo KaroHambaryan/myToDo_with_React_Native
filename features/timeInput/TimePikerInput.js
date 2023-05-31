@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity, Text, StyleSheet,Image } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeTime } from './timeInputSlicer';
 
 const TimePickerInput = () => {
+	const dispatch = useDispatch();
+
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
   const [selectedTime, setSelectedTime] = useState('');
 
@@ -16,7 +20,7 @@ const TimePickerInput = () => {
 
   const handleConfirm = (time) => {
     const selectedTime = time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
+		dispatch(changeTime(selectedTime));
     setSelectedTime(selectedTime);
     hideTimePicker();
   };
@@ -31,7 +35,7 @@ const TimePickerInput = () => {
 					style={{color: 'black'}}
         />
         <Image
-          source={require('../assets/icon_clock.png')}
+          source={require('../../assets/icon_clock.png')}
           style={styles.icon}
         />
       </TouchableOpacity>

@@ -14,7 +14,6 @@ const DateInput = () => {
 
 	const showDatePicker = () => {
 		setDatePickerVisibility(true);
-		
   };
 
 	const hideDatePicker = () => {

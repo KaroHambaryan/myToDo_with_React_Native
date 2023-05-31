@@ -7,8 +7,8 @@ const newTaskTitleSlice = createSlice({
   initialState,
   reducers: {
 		readText: (state, action) => {
-			console.log(action.payload);
-			return action.payload
+			state = action.payload;
+			return state;
 		},
   },
 });
