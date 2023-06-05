@@ -12,14 +12,14 @@ const Main = () => {
 		<SafeAreaView style={styles.main}>
 			<ScrollView style={styles.scrollView}>
 				<View style={styles.completed}>
-					{unCompletedTasks.map((elem, i) => {
+					{unCompletedTasks.map((elem,) => {
 						return <Task elem={elem} key={`${elem.id}`} />
 					})}
 				</View>
 				<Text style={styles.completed_text}>Completed</Text>
 				<View style={styles.completed}>
-					{completedTasks.map((elem, i) => {
-						return <Task elem={elem} key={`${i}`} />
+					{completedTasks.map((elem) => {
+						return <Task elem={elem} key={`${elem.id}`} />
 					})}
 				</View>
 			</ScrollView>

@@ -8,9 +8,9 @@ import { changeDate } from './dateInputSlice';
 
 const DateInput = () => {
 	const dispatch = useDispatch();
-
+	const [selectedDate, setSelectedDate] = useState('');
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  const [selectedDate, setSelectedDate] = useState('');
+  
 
 	const showDatePicker = () => {
 		setDatePickerVisibility(true);

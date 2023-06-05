@@ -1,37 +1,50 @@
 // import React, {useState} from "react";
 import Moment from 'moment';
-
+import Icon from 'react-native-vector-icons/AntDesign';
 import { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { getCompletedTask , setIsChecked} from '../uncompletedTasks/uncompletedTasksSlice';
-import { useDispatch } from 'react-redux';
+import { getCompletedTask, setIsChecked, changeEditValue, selectTaskForEdit,deleteTask } from '../uncompletedTasks/uncompletedTasksSlice';
+import { readText } from '../newTaskTitle/newTaskTitleSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const Task = ({ elem }) => {
 	const navigation = useNavigation();
-	const {isChecked, title, category, date, time, area } = elem;
-	console.log(isChecked);
+	const {id ,isChecked, title, category, date, time, area } = elem;
+
 	const dispatch = useDispatch();
+	const taskObject = useSelector(selectTaskForEdit)
 
 	const currentTime = Moment().format('h:mm a');
-
+	const changePleaseCompleted = () => {
+		dispatch(setIsChecked(id))
+		console.log(id,"task");
+	}
 
 	const handleCheckBoxToggle = () => {
-		dispatch(getCompletedTask({id: elem.id}));
-		// dispatch(setIsChecked({isChecked: true, id: elem.id}));
+		dispatch(getCompletedTask(id));
 	};
 
+	const changeEditStatus = (task) => {
+		navigation.navigate('Add_New_Task');
+		dispatch(changeEditValue({ id, status: true }));
+		console.log(taskObject.title);
+		// dispatch(readText(taskObject.title));
+	}
+
+	const removeTask = () => {
+		dispatch(deleteTask(id))
+	}
+
 	return (
-		<TouchableOpacity style={styles.task_container} onPress={
-			() => navigation.navigate('Add_New_Task')
-		}>
+		<View style={styles.task_container} >
 			<View style={styles.wrapper}>
 				<View style={styles.icon_wrapper}>
 					<Image source={
 						category === "list" ? require('../../assets/list.png') :
-						category === "calendar" ? require('../../assets/calendar.png') :
-						require('../../assets/win.png')} />
+							category === "calendar" ? require('../../assets/calendar.png') :
+								require('../../assets/win.png')} />
 				</View>
 				<View style={styles.task_style}>
 					<Text>{title}</Text>
@@ -39,16 +52,25 @@ const Task = ({ elem }) => {
 					<Text>{date}</Text>
 				</View>
 			</View>
-			<View>
-				<TouchableOpacity onPress={
-					handleCheckBoxToggle
-				}>
-					<Image style={styles.check_style} source={
-						isChecked ? require('../../assets/Checked_True.png') :
-							require('../../assets/Checked_False.png')} />
+			<TouchableOpacity onPress={removeTask}>
+					<Icon name="delete" size={30} color="black" />
+			</TouchableOpacity>
+			
+			<TouchableOpacity onPress={changeEditStatus}>
+					<Icon name="edit" size={30} color="black" />
 				</TouchableOpacity>
+			<View>
+
+				<View>
+					<TouchableOpacity onPress={!isChecked ? handleCheckBoxToggle : changePleaseCompleted}>
+						<Image style={styles.check_style} source={
+							isChecked ? require('../../assets/Checked_True.png') :
+								require('../../assets/Checked_False.png')} />
+					</TouchableOpacity>
+				</View>
+				
 			</View>
-		</TouchableOpacity>
+		</View>
 	);
 };
 

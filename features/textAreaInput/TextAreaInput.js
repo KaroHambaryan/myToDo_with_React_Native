@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeTextArea, selectTextArea } from './textAreaSlice';
 
 
-const TextAreaInput = () => {
+const TextAreaInput = ({changeArea}) => {
 	const dispatch = useDispatch();
 	const text = useSelector(selectTextArea);
   return (
